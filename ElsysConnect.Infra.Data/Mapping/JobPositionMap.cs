@@ -2,49 +2,36 @@
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata.Builders;
 
-public class JobPositionMap : IEntityTypeConfiguration<JobPosition>
+namespace Infra.Data.Mapping
 {
-    public void Configure(EntityTypeBuilder<JobPosition> builder)
+    public class JobPositionMap : IEntityTypeConfiguration<JobPosition>
     {
-        builder.ToTable("JobPositions");
+        public void Configure(EntityTypeBuilder<JobPosition> builder)
+        {
+            builder.HasKey(j => j.Id);
+            builder.Property(j => j.Title).IsRequired();            
 
-        builder.HasKey(x => x.Id);
+            builder.HasMany(j => j.JobPositionPhases)
+                .WithOne(jp => jp.JobPosition)
+                .HasForeignKey(jp => jp.JobPositionId)
+                .OnDelete(DeleteBehavior.Cascade);
 
-        builder.Property(x => x.Title)
-            .HasMaxLength(100)
-            .IsRequired();
+            builder.HasMany(j => j.Candidates)
+                .WithMany(c => c.JobPositions)
+                .UsingEntity<JobPositionCandidate>(
+                    j => j.HasOne(jc => jc.JobPosition)
+                          .WithMany(j => j.JobPositionCandidates)
+                          .HasForeignKey(jc => jc.JobPositionId),
+                    j => j.HasOne(jc => jc.Candidate)
+                          .WithMany(c => c.JobPositionCandidates)
+                          .HasForeignKey(jc => jc.CandidateId),
+                    j =>
+                    {
+                        j.HasKey(jc => new { jc.JobPositionId, jc.CandidateId });
+                        j.ToTable("JobPositionCandidates");
+                    });
 
-        builder.HasMany(x => x.Candidates)
-            .WithMany(x => x.JobPositions)
-            .UsingEntity<JobPositionCandidate>(
-                j => j.HasOne(jpc => jpc.Candidate)
-                    .WithMany(c => c.JobPositionCandidates)
-                    .HasForeignKey(jpc => jpc.CandidateId),
-                j => j.HasOne(jpc => jpc.JobPosition)
-                    .WithMany(jp => jp.JobPositionCandidates)
-                    .HasForeignKey(jpc => jpc.JobPositionId),
-                j =>
-                {
-                    j.HasKey(jpc => new { jpc.CandidateId, jpc.JobPositionId });
-                    j.ToTable("JobPositionCandidates");
-                });
-
-        builder.HasMany(x => x.RecruitmentPhases)
-            .WithMany(x => x.JobPositions)
-            .UsingEntity<JobPositionPhase>(
-                j => j.HasOne(jpp => jpp.RecruitmentPhase)
-                    .WithMany(rp => rp.JobPositionPhases)
-                    .HasForeignKey(jpp => jpp.RecruitmentPhaseId),
-                j => j.HasOne(jpp => jpp.JobPosition)
-                    .WithMany(jp => jp.JobPositionPhases)
-                    .HasForeignKey(jpp => jpp.JobPositionId),
-                j =>
-                {
-                    j.HasKey(jpp => new { jpp.RecruitmentPhaseId, jpp.JobPositionId });
-                    j.ToTable("JobPositionPhases");
-                });
-
-        builder.Property(x => x.ClosingDate)
-            .HasColumnType("datetime2");
+            builder.ToTable("JobPositions");
+        }
     }
 }

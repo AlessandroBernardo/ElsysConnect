@@ -12,8 +12,8 @@ namespace ElsysConnect.Domain.Entities
         public int Age { get; set; }
         public int Phone { get; set; }
 
-        public virtual Collection<CandidatePhase> CandidatePhases { get; set; }
-        public virtual Collection<JobPosition> JobPositions { get; set; }
+        public ICollection<CandidatePhase> CandidatePhases { get; set; }
+        public ICollection<JobPositionCandidate> JobPositionCandidates { get; set; }
     }
 }
 }

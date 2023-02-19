@@ -10,7 +10,7 @@ namespace ElsysConnect.Domain.Entities
         public string Title { get; set; }
         public DateTime? ClosingDate { get; set; }
 
-        public virtual ICollection<Candidate> Candidates { get; set; }
-        public virtual ICollection<RecruitmentPhase> RecruitmentPhases { get; set; }
+        public ICollection<JobPositionPhase> JobPositionPhases { get; set; }
+        public ICollection<JobPositionCandidate> JobPositionCandidates { get; set; }
     }
 }

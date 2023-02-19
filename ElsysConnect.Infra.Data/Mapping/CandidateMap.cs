@@ -15,23 +15,18 @@ namespace Infra.Data.Mapping
             builder.Property(c => c.Age).IsRequired();
             builder.Property(c => c.Phone).IsRequired();
 
-            // relacionamento com CandidatePhase
-            builder.HasMany(c => c.JobPositions)
-        .WithMany(jp => jp.Candidates)
-        .UsingEntity<JobPositionCandidate>(
-             j => j.HasOne(jpc => jpc.JobPosition)
-                   .WithMany()
-                   .HasForeignKey(jpc => jpc.JobPositionId),
-             j => j.HasOne(jpc => jpc.Candidate)
-                   .WithMany()
-                   .HasForeignKey(jpc => jpc.CandidateId),
-             j =>
-             {
-                 j.HasKey(jpc => new { jpc.JobPositionId, jpc.CandidateId });
-                 j.ToTable("JobPositionCandidates");
-             });
+            builder.HasMany(c => c.CandidatePhases)
+                .WithOne(cp => cp.Candidate)
+                .HasForeignKey(cp => cp.CandidateId)
+                .OnDelete(DeleteBehavior.Cascade);
+
+            builder.HasMany(c => c.JobPositionCandidates)
+                .WithOne(jpc => jpc.Candidate)
+                .HasForeignKey(jpc => jpc.CandidateId)
+                .OnDelete(DeleteBehavior.Cascade);
 
             builder.ToTable("Candidates");
         }
     }
+
 }
