@@ -19,9 +19,9 @@ namespace Infra.Data.ContextDb
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
             // aqui você pode adicionar os mappings de cada entidade
-            modelBuilder.ApplyConfiguration(new CandidateMap());
-            modelBuilder.ApplyConfiguration(new JobPositionMap());
-            modelBuilder.ApplyConfiguration(new RecruitmentPhaseMap());            
+            //modelBuilder.ApplyConfiguration(new CandidateMap());
+            //modelBuilder.ApplyConfiguration(new JobPositionMap());
+            //modelBuilder.ApplyConfiguration(new RecruitmentPhaseMap());            
         }
     }
 }

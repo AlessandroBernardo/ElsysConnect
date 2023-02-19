@@ -1,3 +1,8 @@
+using ElsysConnect.Application;
+using ElsysConnect.Application.Interfaces;
+using ElsysConnect.Domain.Interfaces;
+using ElsysConnect.Infra.Data.Repository;
+using ElsysConnect.Web.Models.ElsysConnectModel;
 using Infra.Data.ContextDb;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
@@ -25,6 +30,12 @@ namespace ElsysConnect.Web
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
+
+            services.AddScoped(typeof(BaseAppService<>), typeof(BaseAppService<>));
+            services.AddScoped<IBaseAppService<CandidateViewModel>, BaseAppService<CandidateViewModel>>();
+
+            services.AddScoped<ICandidateRepository, CandidateRepository>();
+            services.AddScoped(typeof(IBaseRepository<>), typeof(BaseRepository<>));
             services.AddDbContext<Context>(options => options.UseSqlServer(Configuration.GetConnectionString("ConnectionDefault")));
             services.AddControllersWithViews();
         }

@@ -13,9 +13,7 @@ public class BaseEntityMap<T> : IEntityTypeConfiguration<T> where T : BaseEntity
 
         builder.Property(x => x.InsertDate)
             .IsRequired();
-
-        builder.Property(x => x.UpdateDate)
-            .IsRequired();
+       
     }
 }
 

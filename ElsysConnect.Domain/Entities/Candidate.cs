@@ -9,8 +9,5 @@ namespace ElsysConnect.Domain.Entities
         public string Email { get; set; }
         public int Age { get; set; }
         public int Phone { get; set; }
-
-        public virtual ICollection<JobPosition> JobPositions { get; set; }
-        public virtual ICollection<RecruitmentPhase> RecruitmentPhases { get; set; }
     }
 }
