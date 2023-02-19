@@ -1,7 +1,5 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Collections.ObjectModel;
-using System.Text;
 
 namespace ElsysConnect.Domain.Entities
 {
@@ -10,7 +8,8 @@ namespace ElsysConnect.Domain.Entities
         public string Title { get; set; }
         public DateTime? ClosingDate { get; set; }
 
-        public ICollection<JobPositionPhase> JobPositionPhases { get; set; }
-        public ICollection<JobPositionCandidate> JobPositionCandidates { get; set; }
+        public virtual ICollection<Candidate> Candidates { get; set; }
+        public virtual ICollection<RecruitmentPhase> RecruitmentPhases { get; set; }
     }
 }
+

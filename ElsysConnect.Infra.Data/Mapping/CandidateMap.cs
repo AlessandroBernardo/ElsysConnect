@@ -10,20 +10,23 @@ namespace Infra.Data.Mapping
         public void Configure(EntityTypeBuilder<Candidate> builder)
         {
             builder.HasKey(c => c.Id);
-            builder.Property(c => c.Name).IsRequired();
-            builder.Property(c => c.Email).IsRequired();
-            builder.Property(c => c.Age).IsRequired();
-            builder.Property(c => c.Phone).IsRequired();
+            builder.Property(c => c.Name)
+                .IsRequired()
+                .HasColumnName("Name")
+                .HasColumnType("varchar(50)");
+            builder.Property(c => c.Email)
+                .IsRequired()
+                .HasColumnName("Email")
+                .HasColumnType("varchar(100)");
+            builder.Property(c => c.Age)
+                .IsRequired()
+                .HasColumnName("Age")
+                .HasColumnType("int(3)");
+            builder.Property(c => c.Phone)
+                .IsRequired()
+                .HasColumnName("Phone")
+                .HasColumnType("varchar(16)"); 
 
-            builder.HasMany(c => c.CandidatePhases)
-                .WithOne(cp => cp.Candidate)
-                .HasForeignKey(cp => cp.CandidateId)
-                .OnDelete(DeleteBehavior.Cascade);
-
-            builder.HasMany(c => c.JobPositionCandidates)
-                .WithOne(jpc => jpc.Candidate)
-                .HasForeignKey(jpc => jpc.CandidateId)
-                .OnDelete(DeleteBehavior.Cascade);
 
             builder.ToTable("Candidates");
         }
