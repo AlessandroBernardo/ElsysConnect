@@ -4,11 +4,11 @@ using ElsysConnect.Domain.Interfaces;
 using System;
 using System.Collections.Generic;
 using System.Threading.Tasks;
-using ElsysConnect.Web.Models.ElsysConnectModel
+
 
 namespace ElsysConnect.Application
 {
-    public class BaseAppService<T> : IBaseAppService<T> where T : BaseViewModel
+    public class BaseAppService<T> : IBaseAppService<T>
     {
 
         private readonly IBaseRepository<T> _baseRepository;
