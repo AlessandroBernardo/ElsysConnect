@@ -1,3 +1,4 @@
+using ElsysConnect.Web.AutoMapper;
 using ElsysConnect.Application;
 using ElsysConnect.Application.Interfaces;
 using ElsysConnect.Domain.Interfaces;
@@ -30,9 +31,10 @@ namespace ElsysConnect.Web
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
-
+            services.AddAutoMapper(typeof(AutoMapperSetup));
             services.AddScoped(typeof(BaseAppService<>), typeof(BaseAppService<>));
-            services.AddScoped<IBaseAppService<CandidateViewModel>, BaseAppService<CandidateViewModel>>();
+            //services.AddScoped<IBaseAppService<BaseViewModel>, BaseAppService<BaseViewModel>>();
+            //services.AddScoped<IBaseAppService<CandidateViewModel>, BaseAppService<CandidateViewModel>>();
 
             services.AddScoped<ICandidateRepository, CandidateRepository>();
             services.AddScoped(typeof(IBaseRepository<>), typeof(BaseRepository<>));

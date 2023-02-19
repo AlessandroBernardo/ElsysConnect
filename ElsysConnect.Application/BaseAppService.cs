@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 
 namespace ElsysConnect.Application
 {
-    public class BaseAppService<T> : IBaseAppService<T>
+    public class BaseAppService<T> : IBaseAppService<T> where T : BaseEntity
     {
 
         private readonly IBaseRepository<T> _baseRepository;

@@ -2,7 +2,7 @@
 using ElsysConnect.Domain.Entities;
 using ElsysConnect.Web.Models.ElsysConnectModel;
 
-namespace App.AutoMapper
+namespace ElsysConnect.Web.AutoMapper
 {
     public class AutoMapperSetup : Profile
     {
@@ -11,16 +11,15 @@ namespace App.AutoMapper
 
             #region ModelToDomain
 
+            CreateMap<BaseViewModel, BaseEntity>();
             CreateMap<CandidateViewModel, Candidate>();
-
 
             #endregion
 
             #region DomainToModel
-
-            CreateMap<Candidate, CandidateViewModel>();
             
-
+            CreateMap<BaseEntity, BaseViewModel>();
+            CreateMap<Candidate, CandidateViewModel>();
 
             #endregion
         }
