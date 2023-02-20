@@ -6,56 +6,48 @@ using Microsoft.Data.SqlClient;
 using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
+using System.Data;
 using System.Text;
 using System.Threading.Tasks;
 
 namespace ElsysConnect.Infra.Data.Repository
 {
-    public class BaseRepository<T> : IBaseRepository<T> where T : BaseEntity
+    public class BaseRepository<T> : IBaseRepository<T> where T : class
     {
-        protected readonly Context _context;
-        protected readonly string _connectionString;
+        private readonly IDbConnection _dbConnection;
 
-        public BaseRepository(Context context, string connectionString)
+        public BaseRepository(IDbConnection dbConnection)
         {
-            //ef
-            _context = context;
-            //puro
-            _connectionString = connectionString;
-        }  
+            _dbConnection = dbConnection;
+        }
 
         public async Task<IEnumerable<T>> GetAllAsync()
-        {            
-            //dapper
-            IEnumerable<T> entities;
-            using (var connection = new SqlConnection(_connectionString))
-            {
-                await connection.OpenAsync();
-                var tableName = typeof(T).Name + "s";
-                var query = $"SELECT * FROM {tableName}";
-                entities = await connection.QueryAsync<T>(query);
-            }
-            return entities;
-        }
+        {
+            string sql = "SELECT * FROM " + typeof(T).Name + 's';
+            var retorno = await _dbConnection.QueryAsync<T>(sql);
+            return retorno;
+        }       
 
-        public Task<T> GetByIdAsync(Guid id)
+        public async Task InsertAsync(T entity)
         {
             throw new NotImplementedException();
         }
 
-        public Task InsertAsync(T entity)
+        public async Task UpdateAsync(T entity)
         {
             throw new NotImplementedException();
         }
 
-        public Task UpdateAsync(T entity)
+        public async Task DeleteAsync(Guid id)
         {
             throw new NotImplementedException();
         }
 
-        public Task DeleteAsync(Guid id)
+        public async Task<T> GetByIdAsync(Guid id)
         {
             throw new NotImplementedException();
         }
     }
+
 }
+

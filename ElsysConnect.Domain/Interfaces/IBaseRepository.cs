@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace ElsysConnect.Domain.Interfaces
 {
-    public interface IBaseRepository<T> where T : BaseEntity
+    public interface IBaseRepository<T> where T : class
     {
         Task<IEnumerable<T>> GetAllAsync();
         Task <T> GetByIdAsync(Guid id);

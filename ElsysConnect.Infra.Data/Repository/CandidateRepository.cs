@@ -5,45 +5,18 @@ using Infra.Data.ContextDb;
 using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
+using System.Data;
 using System.Text;
 using System.Threading.Tasks;
 
-public class CandidateRepository : ICandidateRepository
+namespace ElsysConnect.Infra.Data.Repository
 {
-    //private readonly Context _context;
+    public class CandidateRepository : BaseRepository<Candidate>, ICandidateRepository
+    {
+        public CandidateRepository(IDbConnection dbConnection) : base(dbConnection)
+        {
+        }
+    }
 
-    //public CandidateRepository(Context context)
-    //{
-    //    _context = context;
-    //}
-
-    //public Task DeleteAsync(Guid id)
-    //{
-    //    throw new NotImplementedException();
-    //}
-
-    //public async Task<IEnumerable<Candidate>> GetAllAsync()
-    //{
-    //    var connection = _context.Database.GetDbConnection();
-    //    var query = "SELECT * FROM Candidates";
-    //    var candidates = await connection.QueryAsync<Candidate>(query);
-    //    return candidates;
-    //}
-
-    //public Task<Candidate> GetByIdAsync(Guid id)
-    //{
-    //    throw new NotImplementedException();
-    //}
-
-    //public Task InsertAsync(Candidate candidate)
-    //{
-    //    throw new NotImplementedException();
-    //}
-
-    //public Task UpdateAsync(Candidate candidate)
-    //{
-    //    throw new NotImplementedException();
-    //}
-
-    // Demais métodos da interface
 }
+

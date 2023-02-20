@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 
 namespace ElsysConnect.Application
 {
-    public class BaseAppService<T> : IBaseAppService<T> where T : BaseEntity
+    public class BaseAppService<T> : IBaseAppService<T> where T : class
     {
 
         private readonly IBaseRepository<T> _baseRepository;
@@ -32,6 +32,7 @@ namespace ElsysConnect.Application
             
         }
 
+        #region MyRegion
         public Task<T> GetByIdAsync(Guid id)
         {
             throw new NotImplementedException();
@@ -50,6 +51,7 @@ namespace ElsysConnect.Application
         public Task DeleteAsync(Guid id)
         {
             throw new NotImplementedException();
-        }
+        } 
+        #endregion
     }
 }

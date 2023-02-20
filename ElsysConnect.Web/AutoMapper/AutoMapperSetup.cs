@@ -9,17 +9,27 @@ namespace ElsysConnect.Web.AutoMapper
         public AutoMapperSetup()
         {
 
+            CreateMap<Candidate, CandidateViewModel>();
+            //.IncludeBase<BaseEntity, BaseViewModel>() // include base mapping
+            //.ReverseMap(); // two-way mapping
+
+            // Mapping from CandidateViewModel to Candidate
+            CreateMap<CandidateViewModel, Candidate>();
+                //.IncludeBase<BaseViewModel, BaseEntity>() // include base mapping
+                //.ReverseMap(); // two-way mapping
+
+
             #region ModelToDomain
 
-            CreateMap<BaseViewModel, BaseEntity>();
-            CreateMap<CandidateViewModel, Candidate>();
+            //CreateMap<BaseViewModel, BaseEntity>();
+            //CreateMap<CandidateViewModel, Candidate>();
 
-            #endregion
+            //#endregion
 
-            #region DomainToModel
-            
-            CreateMap<BaseEntity, BaseViewModel>();
-            CreateMap<Candidate, CandidateViewModel>();
+            //#region DomainToModel
+
+            //CreateMap<BaseEntity, BaseViewModel>();
+            //CreateMap<Candidate, CandidateViewModel>();
 
             #endregion
         }

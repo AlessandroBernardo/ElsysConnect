@@ -7,6 +7,8 @@ namespace Infra.Data.ContextDb
 {
     public class Context : DbContext
     {
+
+               
         public Context(DbContextOptions<Context> options) : base(options)
         {
         }
@@ -16,12 +18,15 @@ namespace Infra.Data.ContextDb
         public DbSet<JobPosition> JobPositions { get; set; }
         public DbSet<RecruitmentPhase> RecruitmentPhases { get; set; }       
 
-        protected override void OnModelCreating(ModelBuilder modelBuilder)
-        {
-            // aqui você pode adicionar os mappings de cada entidade
-            //modelBuilder.ApplyConfiguration(new CandidateMap());
-            //modelBuilder.ApplyConfiguration(new JobPositionMap());
-            //modelBuilder.ApplyConfiguration(new RecruitmentPhaseMap());            
-        }
+        //protected override void OnModelCreating(ModelBuilder modelBuilder)
+        //{
+        //    base.OnModelCreating(modelBuilder);
+            
+
+        //    // aqui você pode adicionar os mappings de cada entidade
+        //    //modelBuilder.ApplyConfiguration(new CandidateMap());
+        //    //modelBuilder.ApplyConfiguration(new JobPositionMap());
+        //    //modelBuilder.ApplyConfiguration(new RecruitmentPhaseMap());            
+        //}
     }
 }

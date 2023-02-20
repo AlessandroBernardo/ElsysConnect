@@ -1,31 +1,36 @@
-﻿using ElsysConnect.Application;
+﻿using AutoMapper;
 using ElsysConnect.Application.Interfaces;
+using ElsysConnect.Domain.Entities;
 using ElsysConnect.Web.Models.ElsysConnectModel;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
-using System;
 using System.Collections.Generic;
-using System.Linq;
 using System.Threading.Tasks;
 
 namespace ElsysConnect.Web.Controllers
 {
-    public class ElsysConnectController : Controller
+    public class CandidateController : Controller
     {
-        private readonly IBaseAppService<CandidateViewModel> _baseAppService;
+        private readonly ICandidateAppService _candidateAppService;
+        private readonly IMapper _mapper;
 
-        public ElsysConnectController(IBaseAppService<CandidateViewModel> baseAppService)
+        public CandidateController(ICandidateAppService candidateAppService, IMapper mapper)
         {
-            _baseAppService = baseAppService;
+            _candidateAppService = candidateAppService;
+            _mapper = mapper;
+
         }
         
         // GET: CandidateController
         public async Task<ActionResult> Index()
-        {
-            var candidates = await _baseAppService.GetAllAsync();
-            return View(candidates);
+        {           
+            
+            var candidates = await _candidateAppService.GetAllAsync();
+            var candidatesViewModels = _mapper.Map<IEnumerable<Candidate>, IEnumerable<CandidateViewModel>>(candidates);
+            return View(candidatesViewModels);
         }
 
+        #region MyRegion
         // GET: CandidateController/Details/5
         public ActionResult Details(int id)
         {
@@ -93,6 +98,7 @@ namespace ElsysConnect.Web.Controllers
             {
                 return View();
             }
-        }
+        } 
+        #endregion
     }
 }
