@@ -4,8 +4,11 @@ using ElsysConnect.Domain.Entities;
 using ElsysConnect.Web.Models.ElsysConnectModel;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
+
+using System;
 using System.Collections.Generic;
 using System.Threading.Tasks;
+using X.PagedList;
 
 namespace ElsysConnect.Web.Controllers
 {
@@ -20,19 +23,21 @@ namespace ElsysConnect.Web.Controllers
             _mapper = mapper;
 
         }
-        
+
         // GET: CandidateController
-        public async Task<ActionResult> Index()
-        {           
+        public async Task<ActionResult> Index(int? page)
+        {
+            int pageSize = 2;
+            int pageNumber = (page ?? 1);
             
-            var candidates = await _candidateAppService.GetAllAsync();
-            var candidatesViewModels = _mapper.Map<IEnumerable<Candidate>, IEnumerable<CandidateViewModel>>(candidates);
-            return View(candidatesViewModels);
+            var candidatesViewModels = _mapper.Map<IEnumerable<Candidate>, IEnumerable<CandidateViewModel>>(await _candidateAppService.GetAllAsync());
+            var candidatesPerPage = candidatesViewModels.ToPagedList(pageNumber, pageSize);
+            return View(candidatesPerPage);
         }
 
         #region MyRegion
         // GET: CandidateController/Details/5
-        public ActionResult Details(int id)
+        public ActionResult Details(Guid id)
         {
             return View();
         }
@@ -80,10 +85,18 @@ namespace ElsysConnect.Web.Controllers
         }
 
         // GET: CandidateController/Delete/5
-        public ActionResult Delete(int id)
+
+        public async Task<IActionResult> Delete(Guid id)
         {
-            return View();
+            var candidate = await _candidateAppService.GetByIdAsync(id);
+            if (candidate == null)
+            {
+                return NotFound();
+            }
+            await _candidateAppService.DeleteAsync(candidate.Id);
+            return RedirectToAction(nameof(Index));
         }
+
 
         // POST: CandidateController/Delete/5
         [HttpPost]
@@ -98,7 +111,7 @@ namespace ElsysConnect.Web.Controllers
             {
                 return View();
             }
-        } 
+        }
         #endregion
     }
 }

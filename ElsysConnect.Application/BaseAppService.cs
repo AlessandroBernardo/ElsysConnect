@@ -33,9 +33,10 @@ namespace ElsysConnect.Application
         }
 
         #region MyRegion
-        public Task<T> GetByIdAsync(Guid id)
+        public async Task<T> GetByIdAsync(Guid id)
         {
-            throw new NotImplementedException();
+            var entity = await _baseRepository.GetByIdAsync(id);
+            return entity;
         }
 
         public Task InsertAsync(T entity)
@@ -48,10 +49,10 @@ namespace ElsysConnect.Application
             throw new NotImplementedException();
         }
 
-        public Task DeleteAsync(Guid id)
+        public async Task DeleteAsync(Guid id)
         {
-            throw new NotImplementedException();
-        } 
+            await _baseRepository.DeleteAsync(id);
+        }
         #endregion
     }
 }

@@ -13,20 +13,9 @@ namespace Infra.Data.ContextDb
         {
         }
 
-        // DbSet para cada entidade mapeada
         public DbSet<Candidate> Candidates { get; set; }
         public DbSet<JobPosition> JobPositions { get; set; }
         public DbSet<RecruitmentPhase> RecruitmentPhases { get; set; }       
-
-        //protected override void OnModelCreating(ModelBuilder modelBuilder)
-        //{
-        //    base.OnModelCreating(modelBuilder);
-            
-
-        //    // aqui você pode adicionar os mappings de cada entidade
-        //    //modelBuilder.ApplyConfiguration(new CandidateMap());
-        //    //modelBuilder.ApplyConfiguration(new JobPositionMap());
-        //    //modelBuilder.ApplyConfiguration(new RecruitmentPhaseMap());            
-        //}
+              
     }
 }

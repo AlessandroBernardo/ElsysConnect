@@ -40,13 +40,20 @@ namespace ElsysConnect.Infra.Data.Repository
 
         public async Task DeleteAsync(Guid id)
         {
-            throw new NotImplementedException();
+            string sql = $"DELETE FROM {typeof(T).Name}s WHERE ID = @id";
+            var parameters = new { id };
+            await _dbConnection.ExecuteAsync(sql, parameters);
         }
+
 
         public async Task<T> GetByIdAsync(Guid id)
         {
-            throw new NotImplementedException();
+            string sql = $"SELECT * FROM {typeof(T).Name}s WHERE ID = @id";
+            var parameters = new { id };
+            var retorno = await _dbConnection.QueryFirstOrDefaultAsync<T>(sql, parameters);
+            return retorno;
         }
+
     }
 
 }

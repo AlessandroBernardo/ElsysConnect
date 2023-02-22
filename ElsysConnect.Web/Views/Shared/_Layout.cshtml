@@ -24,25 +24,34 @@
                         <li class="nav-item">
                             <a class="nav-link text-dark" asp-area="" asp-controller="Home" asp-action="Privacy">Privacy</a>
                         </li>
+                        <li class="nav-item">
+                            <a class="nav-link text-dark" asp-area="" asp-controller="Candidate" asp-action="Index">Candidatos</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link text-dark" asp-area="" asp-controller="JobPosition" asp-action="Index">Vagas</a>
+                        </li>
                     </ul>
                 </div>
             </div>
         </nav>
     </header>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    
     <div class="container">
         <main role="main" class="pb-3">
             @RenderBody()
         </main>
     </div>
+    <script src="~/js/site.js" asp-append-version="true"></script>
+    <script src="~/lib/jquery/dist/jquery.min.js"></script>
+    <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
+
+    @RenderSection("Scripts", required: false)
 
     <footer class="border-top footer text-muted">
         <div class="container">
             &copy; 2023 - ElsysConnect.Web - <a asp-area="" asp-controller="Home" asp-action="Privacy">Privacy</a>
         </div>
     </footer>
-    <script src="~/lib/jquery/dist/jquery.min.js"></script>
-    <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
-    <script src="~/js/site.js" asp-append-version="true"></script>
-    @RenderSection("Scripts", required: false)
 </body>
 </html>

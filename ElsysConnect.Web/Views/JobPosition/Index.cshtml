@@ -1,0 +1,93 @@
+﻿@model IEnumerable<ElsysConnect.Web.Models.ElsysConnectModel.JobPositionViewModel>
+
+    <h1>Jobs Position</h1>
+
+    <table class="table">
+        <thead>
+            <tr>
+                <th>Titulo</th>
+                <th>ClosingDate</th>
+                <th>Actions</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var job in Model)
+            {
+            <tr>
+                <td>@job.Title</td>
+                <td>@job.ClosingDate</td>
+
+                <td>
+                    <a href="#" class="btn btn-primary edit-job-link" data-toggle="modal" data-target="#editJobModal">Edit</a>
+                    <!-- <a href="#" class="btn btn-primary edit-job-link" data-toggle="modal" data-target="#editjobModal">Edit</a> -->
+                    <a href="#" class="btn btn-danger delete-link" data-job-id="@job.Id">Delete</a>
+                    <!--<a asp-action="Delete" asp-route-id="@job.Id" class="btn btn-danger delete-link">Delete</a>-->
+                </td>
+            </tr>
+            }
+        </tbody>
+    </table>
+
+
+    <script>
+        $(function () {
+            $('.delete-link').on('click', function (e) {
+                e.preventDefault();
+                var id = $(this).data('job-id');
+                console.log(id);
+                $('#deletejobModal').modal('show');
+            });
+            $('#deletejobModal').on('shown.bs.modal', function () {
+                $('#deleteModal .btn-danger').on('click', function () {
+                    $('#deleteForm').attr('action', '/job/delete/' + id);
+                    $('#deleteForm').submit();
+                });
+            });
+        });
+    </script>
+
+    <!-- Modal -->
+    <div class="modal fade" id="deletejobModal" tabindex="-1" role="dialog" aria-labelledby="deleteModalLabel" aria-hidden="true">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="deleteModalLabel">Delete job</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <p>Are you sure you want to delete this job?</p>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancel</button>
+                    <form method="post">
+                        <button type="submit" class="btn btn-danger">Delete</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+    <!-- Modal para a ação de edição -->
+    <div class="modal fade" id="editjobModal" tabindex="-1" role="dialog" aria-labelledby="editModalLabel" aria-hidden="true">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="editModalLabel">Editar Vaga</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Fechar">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <p>Informações da vaga a ser editada.</p>
+                    <p>ID da vaga: <span id="jobId"></span></p>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Fechar</button>
+                    <button type="button" class="btn btn-primary">Salvar Alterações</button>
+                </div>
+            </div>
+        </div>
+    </div>

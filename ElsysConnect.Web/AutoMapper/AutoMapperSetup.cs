@@ -15,8 +15,11 @@ namespace ElsysConnect.Web.AutoMapper
 
             // Mapping from CandidateViewModel to Candidate
             CreateMap<CandidateViewModel, Candidate>();
-                //.IncludeBase<BaseViewModel, BaseEntity>() // include base mapping
-                //.ReverseMap(); // two-way mapping
+            //.IncludeBase<BaseViewModel, BaseEntity>() // include base mapping
+            //.ReverseMap(); // two-way mapping
+
+            CreateMap<JobPosition, JobPositionViewModel>();
+            CreateMap<JobPositionViewModel, JobPosition>();
 
 
             #region ModelToDomain

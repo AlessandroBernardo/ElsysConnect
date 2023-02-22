@@ -40,6 +40,9 @@ namespace ElsysConnect.Web
           
             services.AddScoped<ICandidateAppService, CandidateAppService>();
             services.AddScoped<ICandidateRepository, CandidateRepository>();
+
+            services.AddScoped<IJobPositionAppService, JobPositionAppService>();
+            services.AddScoped<IJobPositionRepository, JobPositionRepository>();
             services.AddScoped(typeof(IBaseRepository<>), typeof(BaseRepository<>));
             services.AddScoped(typeof(IBaseAppService<>), typeof(BaseAppService<>));                        
             
