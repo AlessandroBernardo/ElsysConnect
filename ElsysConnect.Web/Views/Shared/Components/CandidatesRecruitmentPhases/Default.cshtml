@@ -1,0 +1,54 @@
+﻿
+@model IEnumerable<ElsysConnect.Web.Models.ElsysConnectModel.Dtos.CandidateRecruitmentPhaseDtoVM>
+
+<h1>Recruitment Phases</h1>
+<h5 style="color:firebrick">This is a View Component</h5>
+
+
+<table class="table">
+    <thead>
+        <tr>
+            <th>Candidate Name</th>
+            <th>Candidate Email</th>
+            <th>Candidate Phone</th>
+            <th>Job Position Title</th>
+            <th>Recruitment Phase Name</th>
+            @*<th>Status</th>*@
+
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var candidate in Model)
+        {
+            <tr>
+                <td>@candidate.CandidateName</td>
+                <td>@candidate.CandidateEmail</td>
+                <td>@candidate.CandidatePhone</td>
+                <td>@candidate.JobPositionTitle</td>
+                <td>
+                    @foreach (var item in candidate.PhasesDTOs)
+                    {
+                        <li>@item.PhaseName => <span class="@GetStatusClass(item.Status)">@Enum.GetName(typeof(ElsysConnect.Web.Models.ElsysConnectModel.Enum.Enuns.Situation), item.Status)</span></li>
+                    }
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>
+
+@functions {
+    public static string GetStatusClass(int status)
+    {
+        switch (status)
+        {
+            case (int)ElsysConnect.Web.Models.ElsysConnectModel.Enum.Enuns.Situation.Aproved:
+                return "text-success";
+            case (int)ElsysConnect.Web.Models.ElsysConnectModel.Enum.Enuns.Situation.InProgress:
+                return "text-primary";
+            case (int)ElsysConnect.Web.Models.ElsysConnectModel.Enum.Enuns.Situation.Reproved:
+                return "text-danger";
+            default:
+                return "";
+        }
+    }
+}

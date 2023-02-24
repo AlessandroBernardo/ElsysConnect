@@ -1,4 +1,5 @@
 ﻿using ElsysConnect.Domain.Entities;
+using ElsysConnect.Domain.Entities.Dtos;
 using System;
 using System.Collections.Generic;
 using System.Text;
@@ -8,10 +9,6 @@ namespace ElsysConnect.Domain.Interfaces
 {
     public interface ICandidateRepository : IBaseRepository<Candidate>
     {
-        //Task<IEnumerable<Candidate>> GetAllAsync();
-        //Task<Candidate> GetByIdAsync(Guid id);
-        //Task InsertAsync(Candidate candidate);
-        //Task UpdateAsync(Candidate candidate);
-        //Task DeleteAsync(Guid id);
+        Task<IEnumerable<CandidateRecruitmentPhaseDto>> GetCandidatesRecruitmentPhases();
     }
 }

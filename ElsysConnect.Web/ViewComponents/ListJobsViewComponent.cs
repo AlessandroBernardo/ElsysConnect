@@ -10,13 +10,13 @@ using System.Threading.Tasks;
 
 namespace ElsysConnect.Web.ViewComponents
 {
-    public class TesteViewComponent : ViewComponent
+    public class ListJobsViewComponent : ViewComponent
     {
 
         private readonly IJobPositionAppService _jobPositionAppService;
         private readonly IMapper _mapper;
 
-        public TesteViewComponent(IJobPositionAppService jobPositionAppService, IMapper mapper)
+        public ListJobsViewComponent(IJobPositionAppService jobPositionAppService, IMapper mapper)
         {
             _jobPositionAppService = jobPositionAppService;
             _mapper = mapper;
@@ -24,8 +24,12 @@ namespace ElsysConnect.Web.ViewComponents
 
         public async Task<IViewComponentResult> InvokeAsync()
         {
+            var candidateVm = new CandidateViewModel();
+            ViewBag.Candidate = candidateVm;
             var jobViewModels = _mapper.Map<IEnumerable<JobPosition>, IEnumerable<JobPositionViewModel>>(await _jobPositionAppService.GetAllAsync());
             return View(jobViewModels);
         }
+
+        
     }
 }

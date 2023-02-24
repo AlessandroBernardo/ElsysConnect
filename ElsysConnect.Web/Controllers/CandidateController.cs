@@ -1,7 +1,9 @@
 ﻿using AutoMapper;
 using ElsysConnect.Application.Interfaces;
 using ElsysConnect.Domain.Entities;
+using ElsysConnect.Domain.Entities.Dtos;
 using ElsysConnect.Web.Models.ElsysConnectModel;
+using ElsysConnect.Web.Models.ElsysConnectModel.Dtos;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 
@@ -24,6 +26,14 @@ namespace ElsysConnect.Web.Controllers
 
         }
 
+        [HttpGet]        
+        public async Task<ActionResult> CandidatesRecruitmentPhases() {
+
+            var candidatesRecruitmentPhaseDtoVM = _mapper.Map<IEnumerable<CandidateRecruitmentPhaseDto>, IEnumerable<CandidateRecruitmentPhaseDtoVM>>(await _candidateAppService.GetCandidatesRecruitmentPhases());
+            return View(candidatesRecruitmentPhaseDtoVM);
+
+        }
+
         // GET: CandidateController
         public async Task<ActionResult> Index(int? page)
         {
@@ -43,25 +53,28 @@ namespace ElsysConnect.Web.Controllers
         }
 
         // GET: CandidateController/Create
-        public ActionResult Create()
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public async Task<ActionResult> Create([FromForm] CandidateViewModel candidateViewModel)
         {
-            return View();
+            await _candidateAppService.InsertAsync(_mapper.Map<CandidateViewModel, Candidate>(candidateViewModel));
+            return RedirectToAction(nameof(Index));
         }
 
         // POST: CandidateController/Create
-        [HttpPost]
-        [ValidateAntiForgeryToken]
-        public ActionResult Create(IFormCollection collection)
-        {
-            try
-            {
-                return RedirectToAction(nameof(Index));
-            }
-            catch
-            {
-                return View();
-            }
-        }
+        //[HttpPost                                                                                                 
+        //[ValidateAntiForgeryToken]
+        //public ActionResult Create(IFormCollection collection)
+        //{
+        //    try
+        //    {
+        //        return RedirectToAction(nameof(Index));
+        //    }
+        //    catch
+        //    {
+        //        return View();
+        //    }
+        //}
 
         // GET: CandidateController/Edit/5
         public ActionResult Edit(int id)

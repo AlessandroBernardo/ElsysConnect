@@ -4,4 +4,10 @@
     <TargetFramework>netcoreapp3.1</TargetFramework>
   </PropertyGroup>
 
+  <ItemGroup>
+    <Compile Remove="Entities\Enum\**" />
+    <EmbeddedResource Remove="Entities\Enum\**" />
+    <None Remove="Entities\Enum\**" />
+  </ItemGroup>
+
 </Project>

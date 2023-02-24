@@ -1,6 +1,8 @@
 ﻿using AutoMapper;
 using ElsysConnect.Domain.Entities;
+using ElsysConnect.Domain.Entities.Dtos;
 using ElsysConnect.Web.Models.ElsysConnectModel;
+using ElsysConnect.Web.Models.ElsysConnectModel.Dtos;
 
 namespace ElsysConnect.Web.AutoMapper
 {
@@ -10,6 +12,8 @@ namespace ElsysConnect.Web.AutoMapper
         {
 
             CreateMap<Candidate, CandidateViewModel>();
+            CreateMap<CandidateRecruitmentPhaseDto, CandidateRecruitmentPhaseDtoVM>();
+            CreateMap<PhasesDto, PhasesDtoVM>();
             //.IncludeBase<BaseEntity, BaseViewModel>() // include base mapping
             //.ReverseMap(); // two-way mapping
 
@@ -20,6 +24,8 @@ namespace ElsysConnect.Web.AutoMapper
 
             CreateMap<JobPosition, JobPositionViewModel>();
             CreateMap<JobPositionViewModel, JobPosition>();
+            CreateMap<CandidateRecruitmentPhaseDtoVM, CandidateRecruitmentPhaseDto>();
+            CreateMap<PhasesDtoVM, PhasesDto>();
 
 
             #region ModelToDomain

@@ -6,7 +6,12 @@
 
 @model IPagedList<CandidateViewModel>
 <div>
-    <h1>Candidates</h1>
+    <div class="d-flex justify-content-between">
+        <h1>Candidates</h1>
+        <div>
+            <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#createCandidateModal">Add Candidate</button>
+        </div>
+    </div>
 
     <table class="table">
         <thead>
@@ -39,18 +44,144 @@
     <div class="pagination-container">
         @Html.PagedListPager(Model, page => Url.Action("Index", new { page }), new PagedListRenderOptions
         {
-            LiElementClasses = new List<string> { "page-item" }       
-            
+            LiElementClasses = new List<string> { "page-item" }
+
         })
     </div>
 
+    <div class="d-flex justify-content-between">
+        <div>
+            <button id="toggle-jobs" class="btn btn-primary">Jobs</button>
+        </div>
 
-    <div>
-        @await Component.InvokeAsync("Teste")
+        <div>
+            <button id="toggle-add-cand" class="btn btn-primary">Add Candidate</button>
+        </div>
     </div>
+
+    <div id="jobs-container" style="display:none">
+        <div>
+            @await Component.InvokeAsync("ListJobs")
+        </div>
+    </div>
+
+    <style>
+        .bordered {
+            border: 2px solid blue; /* largura, estilo e cor da borda */
+            padding: 10px; /* espaço interno entre a borda e o conteúdo */
+            border-radius: 5px; /* arredondamento das bordas */
+        }
+    </style>
+
+    <div class="bordered" id="add-cand-container" style="display:none">
+        <h1>Cadastre um candidato</h1>
+        <div>
+            @await Component.InvokeAsync("InsertCandidate")
+        </div>
+    </div>
+
+    @*<div>
+        @await Component.InvokeAsync("CandidatesRecruitmentPhases");
+    </div>*@
 </div>
 
 
+@*REGIONS SEPARANDO POR CONTEXTOS*@
+
+<!-- #region botão mostra vaga/formaddCand JS -->
+<script>
+    $(document).ready(function () {
+        $('#toggle-jobs').click(function () {
+            var container = $('#jobs-container');
+            var button = $(this);
+            if (container.is(':visible')) {
+                container.hide();
+                button.text('Ver vagas');
+            } else {
+                container.show();
+                button.text('Fechar vagas');
+            }
+        });
+    });
+
+    $(document).ready(function () {
+        $('#toggle-add-cand').click(function () {
+            var container = $('#add-cand-container');
+            var button = $(this);
+            if (container.is(':visible')) {
+                container.hide();
+                button.text('Add Candidate');
+            } else {
+                container.show();
+                button.text('Close Form');
+            }
+        });
+    });
+</script>
+<!-- #endregion -->
+<!-- #region Create JS/Modal -->
+<script>
+
+    $(document).ready(function () {
+        $("#createCandidateButton").click(function () {
+            alert("Falta implementação");
+        });
+    });
+    //$('#createCandidateForm').submit(function (event) {
+    //    event.preventDefault();
+
+    //    var form = $(this);
+    //    var url = form.attr('action');
+    //    var data = form.serialize();
+
+    //    $.ajax({
+    //        url: url,
+    //        type: 'POST',
+    //        data: data,
+    //        contentType: 'application/x-www-form-urlencoded',
+    //        dataType: 'json',
+    //        success: function (result) {
+    //            $('#createCandidateModal .modal-body').html(result);
+    //        }
+    //    });
+    //});
+</script>
+
+<div class="modal fade" id="createCandidateModal" tabindex="-1" role="dialog" aria-labelledby="createModalLabel" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="createModalLabel">Create Candidate</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <form  id="createCandidateForm">
+                    <div class="form-group">
+                        <label for="name">Name:</label>
+                        <input type="text" class="form-control" id="name" name="Name" />
+                    </div>
+                    <div class="form-group">
+                        <label for="email">Email:</label>
+                        <input type="text" class="form-control" id="email" name="Email" />
+                    </div>
+                    <div class="form-group">
+                        <label for="age">Age:</label>
+                        <input type="number" class="form-control" id="age" name="Age" />
+                    </div>
+                    <div class="form-group">
+                        <label for="phone">Phone:</label>
+                        <input type="text" class="form-control" id="phone" name="Phone" />
+                    </div>
+                    <button @*type="submit"*@ class="btn btn-primary" id="createCandidateButton"> <span> <b>Falta implementar</b></span> </button>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- #endregion -->
+<!-- #region Delete (Js/Modal) -->
 <script>
     $(function () {
         $('.delete-link').on('click', function (e) {
@@ -68,7 +199,6 @@
     });
 </script>
 
-<!-- Modal -->
 <div class="modal fade" id="deleteCandidateModal" tabindex="-1" role="dialog" aria-labelledby="deleteModalLabel" aria-hidden="true">
     <div class="modal-dialog" role="document">
         <div class="modal-content">
@@ -90,9 +220,8 @@
         </div>
     </div>
 </div>
-
-
-<!-- Modal para a ação de edição -->
+<!-- #endregion-->
+<!-- #region Edit (Modal) -->
 <div class="modal fade" id="editCandidateModal" tabindex="-1" role="dialog" aria-labelledby="editModalLabel" aria-hidden="true">
     <div class="modal-dialog" role="document">
         <div class="modal-content">
@@ -103,8 +232,7 @@
                 </button>
             </div>
             <div class="modal-body">
-                <p>Informações do candidato a ser editado.</p>
-                <p>ID do Candidato: <span id="candidateId"></span></p>
+                <p>Falta Implementação</p>                
             </div>
             <div class="modal-footer">
                 <button type="button" class="btn btn-secondary" data-dismiss="modal">Fechar</button>
@@ -113,3 +241,4 @@
         </div>
     </div>
 </div>
+<!-- #endregion -->
