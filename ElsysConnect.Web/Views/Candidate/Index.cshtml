@@ -69,10 +69,15 @@
             padding: 10px;
             border-radius: 5px;
         }
+        .disabled {
+            pointer-events: none;
+            opacity: 0.5;
+        }
+
     </style>
 
     <div class="bordered" id="add-cand-container" style="display:none">
-        <h1>Cadastre um candidato</h1>
+        <h1>Add Candidate</h1>
         <div>
             @await Component.InvokeAsync("InsertCandidate")
         </div>
@@ -88,12 +93,16 @@
         $('#toggle-jobs').click(function () {
             var container = $('#jobs-container');
             var button = $(this);
+            var addCandButton = $('#toggle-add-cand');
+
             if (container.is(':visible')) {
                 container.hide();
                 button.text('Ver vagas');
+                addCandButton.removeClass('disabled');
             } else {
                 container.show();
                 button.text('Fechar vagas');
+                addCandButton.addClass('disabled');
             }
         });
     });
@@ -102,15 +111,49 @@
         $('#toggle-add-cand').click(function () {
             var container = $('#add-cand-container');
             var button = $(this);
+            var jobsButton = $('#toggle-jobs');
+
             if (container.is(':visible')) {
                 container.hide();
                 button.text('Add Candidate');
+                jobsButton.removeClass('disabled');
             } else {
                 container.show();
                 button.text('Close Form');
+                jobsButton.addClass('disabled');
             }
         });
     });
+
+
+
+    //$(document).ready(function () {
+    //    $('#toggle-jobs').click(function () {
+    //        var container = $('#jobs-container');
+    //        var button = $(this);
+    //        if (container.is(':visible')) {
+    //            container.hide();
+    //            button.text('Show Jobs');
+    //        } else {
+    //            container.show();
+    //            button.text('Hide Jobs');
+    //        }
+    //    });
+    //});
+
+    //$(document).ready(function () {
+    //    $('#toggle-add-cand').click(function () {
+    //        var container = $('#add-cand-container');
+    //        var button = $(this);
+    //        if (container.is(':visible')) {
+    //            container.hide();
+    //            button.text('Add Candidate');
+    //        } else {
+    //            container.show();
+    //            button.text('Close Form');
+    //        }
+    //    });
+    //});
 </script>
 <!-- #endregion -->
 <!-- #region Create JS/Modal -->

@@ -1,15 +1,11 @@
 ﻿
-
-
-
-
 <div class="container">
     <div>
-        <h1>
+        <div id="div-logos" display="inline-block">
             <img src="https://elsys.com/wp-content/uploads/2022/06/logo-color.svg" />
-            <img src="/assets/logoconnect.png" alt="me contrata" />
-            <h5 id="subtitle"></h5>
-        </h1>
+            <a href="https://elsys.com.br"><img src="https://i.ibb.co/xjg0Jmp/CONNECT-LOGO-NOVA.png" alt="CONNECT-LOGO-NOVA" width="7.5%"></a>
+            <a id="subtitle"></a>
+        </div>
         <img src="https://elsys.com/wp-content/uploads/2022/10/home-proposito2-1920x994-1.jpg" alt="Image description" width="75%" >
     </div>
 
@@ -53,18 +49,17 @@
     </div>
 </div>
 
-
-
-
 <style>
-
-    h1, h5 {
-        display: inline-block;
-        margin-right: 20px; /* opcional: adiciona uma margem entre os elementos */
-    }
+    #div-logos a {
+        margin-left: 20px;
+    }    
+     
+     #subtitle {
+          place-content: center
+      }
 
     img {
-        margin-top: 20px;
+        margin-top: 5px;
     }
 
     ul {
@@ -129,7 +124,7 @@
 
 <script>
 
-    const subtitle = "Conectando pessoas à oportunidades";
+    const subtitle = "Conectando pessoas a oportunidades...";
     let index = 0;
 
     function typeSubtitle() {
