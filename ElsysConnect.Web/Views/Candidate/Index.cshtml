@@ -33,9 +33,7 @@
                     <td>@candidate.Phone</td>
                     <td>
                         <a href="#" class="btn btn-primary edit-candidate-link" data-toggle="modal" data-target="#editCandidateModal">Edit</a>
-                        <!-- <a href="#" class="btn btn-primary edit-candidate-link" data-toggle="modal" data-target="#editCandidateModal">Edit</a> -->
                         <a href="#" class="btn btn-danger delete-link" data-candidate-id="@candidate.Id">Delete</a>
-                        <!--<a asp-action="Delete" asp-route-id="@candidate.Id" class="btn btn-danger delete-link">Delete</a>-->
                     </td>
                 </tr>
             }
@@ -67,9 +65,9 @@
 
     <style>
         .bordered {
-            border: 2px solid blue; /* largura, estilo e cor da borda */
-            padding: 10px; /* espaço interno entre a borda e o conteúdo */
-            border-radius: 5px; /* arredondamento das bordas */
+            border: 2px solid blue;
+            padding: 10px;
+            border-radius: 5px;
         }
     </style>
 
@@ -79,10 +77,6 @@
             @await Component.InvokeAsync("InsertCandidate")
         </div>
     </div>
-
-    @*<div>
-        @await Component.InvokeAsync("CandidatesRecruitmentPhases");
-    </div>*@
 </div>
 
 
@@ -157,7 +151,7 @@
                 </button>
             </div>
             <div class="modal-body">
-                <form  id="createCandidateForm">
+                <form id="createCandidateForm">
                     <div class="form-group">
                         <label for="name">Name:</label>
                         <input type="text" class="form-control" id="name" name="Name" />
@@ -232,7 +226,7 @@
                 </button>
             </div>
             <div class="modal-body">
-                <p>Falta Implementação</p>                
+                <p>Falta Implementação</p>
             </div>
             <div class="modal-footer">
                 <button type="button" class="btn btn-secondary" data-dismiss="modal">Fechar</button>

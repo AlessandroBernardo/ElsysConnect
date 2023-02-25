@@ -23,10 +23,8 @@
                     <td>@job.ClosingDate</td>
 
                     <td>
-                        <a href="#" class="btn btn-primary edit-job-link" data-toggle="modal" data-target="#editjobModal">Edit</a>
-                        <!-- <a href="#" class="btn btn-primary edit-job-link" data-toggle="modal" data-target="#editjobModal">Edit</a> -->
-                        <a href="#" class="btn btn-danger delete-job-link" data-job-id="@job.Id">Delete</a>
-                        <!--<a asp-action="Delete" asp-route-id="@job.Id" class="btn btn-danger delete-link">Delete</a>-->
+                        <a href="#" class="btn btn-primary edit-job-link" data-toggle="modal" data-target="#editjobModal">Edit</a>                        
+                        <a href="#" class="btn btn-danger delete-job-link" data-job-id="@job.Id">Delete</a>                        
                     </td>
                 </tr>
             }
@@ -34,15 +32,11 @@
     </table>
 
     <div>
-            @await Component.InvokeAsync("CandidatesRecruitmentPhases");
+            @await Component.InvokeAsync("CandidatesRecruitmentPhases")
         </div>
 
 }
 <div></div>
-
-
-
-
 
 <!-- #region DELETE JS/MODAL -->
 <script>

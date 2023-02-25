@@ -1,8 +1,172 @@
-﻿@{
-    ViewData["Title"] = "Home Page";
-}
+﻿
 
-<div class="text-center">
-    <h1 class="display-4">Welcome</h1>
-    <p>Learn about <a href="https://docs.microsoft.com/aspnet/core">building Web apps with ASP.NET Core</a>.</p>
+
+
+
+<div class="container">
+    <div>
+        <h1>
+            <img src="https://elsys.com/wp-content/uploads/2022/06/logo-color.svg" />
+            <img src="/assets/logoconnect.png" alt="me contrata" />
+            <h5 id="subtitle"></h5>
+        </h1>
+        <img src="https://elsys.com/wp-content/uploads/2022/10/home-proposito2-1920x994-1.jpg" alt="Image description" width="75%" >
+    </div>
+
+    <div class="stacks" onmouseover="showStacks()" onmouseout="hideStacks()">
+        <h2>Stacks utilizadas</h2>
+    </div>
+
+
+    <div id="stacks-list">
+        <ul>
+            <li>
+                <button class="button">ASP.NET Core MVC</button>
+                <span class="dash"></span>
+                <button class="button">.NET Core 3.1</button>
+                <span class="dash"></span>
+                <button class="button">C#</button>
+            </li>
+            <li>
+                <button class="button">HTML</button>
+                <span class="dash"></span>
+                <button class="button">CSS</button>
+                <span class="dash"></span>
+                <button class="button">JS</button>
+                <span class="dash"></span>
+                <button class="button">JQUERY</button>
+            </li>
+            <li>
+                <button class="button">DDD (Domain-Driven Design)</button>
+            </li>
+            <li>
+                <button class="button">AutoMapper</button>
+                <span class="dash"></span>
+                <button class="button">DAPPER</button>
+                <span class="dash"></span>
+                <button class="button">Injeção de dependncia (DI)</button>
+            </li>
+            <li>
+                <button class="button">View Components</button>
+            </li>
+        </ul>
+    </div>
 </div>
+
+
+
+
+<style>
+
+    h1, h5 {
+        display: inline-block;
+        margin-right: 20px; /* opcional: adiciona uma margem entre os elementos */
+    }
+
+    img {
+        margin-top: 20px;
+    }
+
+    ul {
+        list-style: none;
+        padding: 0;
+        margin: 20px auto; /* set left and right margin to auto */
+        width: 75%; /* adjust the width as needed */
+    }
+
+    li {
+        display: flex;
+        align-items: center;
+        margin-bottom: 10px;
+    }
+
+    .button {
+        display: inline-block;
+        padding: 5px 10px;
+        background-color: #008CBA;
+        color: #fff;
+        border-radius: 5px;
+        font-size: 14px;
+        transition: all 0.3s ease;
+        position: relative;
+    }
+
+        .button:hover {
+            background-color: #005F6B;
+        }
+
+
+    .dash {
+        margin: 0 10px;
+        width: 10px;
+        height: 2px;
+        background-color: #333;
+    }
+
+    .stacks {
+        margin-top: 20px;
+        margin-bottom: 20px;
+        background-color: gainsboro;
+        color: white;
+        padding: 10px;
+        cursor: pointer;
+        transition: background-color 0.5s ease-in-out;
+        width: 75%;
+    }
+
+        .stacks:hover {
+            background-color: cornflowerblue;
+        }
+
+    #stacks-list {
+        display: none;
+    }
+
+        #stacks-list.show {
+            display: block;
+        }
+</style>
+
+<script>
+
+    const subtitle = "Conectando pessoas à oportunidades";
+    let index = 0;
+
+    function typeSubtitle() {
+        const text = subtitle.slice(0, ++index);
+        document.getElementById("subtitle").textContent = text;
+        if (text.length === subtitle.length) {
+            clearInterval(typingInterval);
+        }
+    }
+
+    const typingInterval = setInterval(typeSubtitle, 100);
+
+
+    function showStacks() {
+        document.getElementById("stacks-list").classList.add("show");
+    }
+
+    function hideStacks() {
+        document.getElementById("stacks-list").classList.remove("show");
+    }
+</script>
+
+@*<div class="text-center">
+        <h1 class="display-4">Aplicação exemplo para Elsys</h1>
+        <img src="https://elsys.com/wp-content/uploads/2022/10/home-proposito2-1920x994-1.jpg" alt="Image description" width="50%">
+
+        ASP NET MVC CORE | .NET CORE 3.1 | C#
+
+        View Components
+        DDD(Domain Drive-Design)
+        DAPPER
+        AutoMapper
+        Injeção de dependencia
+
+
+        Github do projeto: "https://github.com/AlessandroBernardo/ElsysConnect"
+        Meu Github: "https://github.com/AlessandroBernardo"
+
+
+    </div>*@

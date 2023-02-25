@@ -32,15 +32,12 @@ namespace ElsysConnect.Web
 
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
-        {
-            //services.AddDbContext<Context>(options => options.UseSqlServer(Configuration.GetConnectionString("ConnectionDefault")));
+        {            
             services.AddScoped<IDbConnection>(db => new SqlConnection(Configuration.GetConnectionString("ConnectionDefault")));
-
             services.AddAutoMapper(typeof(AutoMapperSetup));         
           
             services.AddScoped<ICandidateAppService, CandidateAppService>();
             services.AddScoped<ICandidateRepository, CandidateRepository>();
-
             services.AddScoped<IJobPositionAppService, JobPositionAppService>();
             services.AddScoped<IJobPositionRepository, JobPositionRepository>();
             services.AddScoped(typeof(IBaseRepository<>), typeof(BaseRepository<>));

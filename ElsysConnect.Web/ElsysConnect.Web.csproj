@@ -30,4 +30,8 @@
     <ProjectReference Include="..\ElsysConnect.Infra.Data\ElsysConnect.Infra.Data.csproj" />
 <ProjectReference Include="..\ElsysConnect.Infra.Data\ElsysConnect.Infra.Data.csproj" /><!---->  </ItemGroup>
 
+  <ItemGroup>
+    <Folder Include="wwwroot\assets\" />
+  </ItemGroup>
+
 </Project>

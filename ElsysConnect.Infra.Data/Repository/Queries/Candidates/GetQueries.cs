@@ -8,13 +8,13 @@ namespace ElsysConnect.Infra.Data.Repository.Queries.Candidates
     {
         public static string CandidatesRecruitmentPhases()
         {
-            return $@"SELECT c.Name, c.Email, c.Phone, jp.Title, rp.Name as 'PhaseName', crp.Status
-                      FROM [ElsysConnectDb].[dbo].[CandidateRecruitmentPhase] crp
-                      left join Candidates c on crp.CandidateId = c.Id
-                      left join JobPositionRecruitmentPhase jprp on jprp.Id = crp.JobPositionRecruitmentPhaseId
-                      left join JobPositions jp on jp.Id = jprp.JobPositionId
-                      left join RecruitmentPhases rp on rp.Id = jprp.RecruitmentPhaseId
-                      order by c.Name";
+            return $@"SELECT c.Id, c.Name as CandidateName, c.Email as CandidateEmail, c.Phone as CandidatePhone, jp.Title as JobPositionTitle, rp.Name as PhaseName, crp.Status
+            FROM [ElsysConnectDb].[dbo].[CandidateRecruitmentPhase] crp
+            LEFT JOIN Candidates c ON crp.CandidateId = c.Id
+            LEFT JOIN JobPositionRecruitmentPhase jprp ON jprp.Id = crp.JobPositionRecruitmentPhaseId
+            LEFT JOIN JobPositions jp ON jp.Id = jprp.JobPositionId
+            LEFT JOIN RecruitmentPhases rp ON rp.Id = jprp.RecruitmentPhaseId
+            ORDER BY c.Name, rp.Id";
         }
     }
 }
