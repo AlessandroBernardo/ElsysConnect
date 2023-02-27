@@ -25,10 +25,6 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "5.1 - Data", "5.1 - Data", 
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ElsysConnect.Infra.Data", "ElsysConnect.Infra.Data\ElsysConnect.Infra.Data.csproj", "{0E9B4B09-0135-47C9-972E-98F07E6A9D1E}"
 EndProject
-Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Functions", "Functions", "{E04F894C-AE2F-4D49-80AD-5138D5D242D5}"
-EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ElsysFunctionApp", "ElsysFunctionApp\ElsysFunctionApp.csproj", "{384C88D5-37EA-4C70-A8C2-C359F528008F}"
-EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -55,10 +51,6 @@ Global
 		{0E9B4B09-0135-47C9-972E-98F07E6A9D1E}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{0E9B4B09-0135-47C9-972E-98F07E6A9D1E}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{0E9B4B09-0135-47C9-972E-98F07E6A9D1E}.Release|Any CPU.Build.0 = Release|Any CPU
-		{384C88D5-37EA-4C70-A8C2-C359F528008F}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{384C88D5-37EA-4C70-A8C2-C359F528008F}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{384C88D5-37EA-4C70-A8C2-C359F528008F}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{384C88D5-37EA-4C70-A8C2-C359F528008F}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -70,7 +62,6 @@ Global
 		{E6E70996-38AB-422D-8C74-4C1781228356} = {2359AC78-7C52-4C2E-9980-F7F235CD54B4}
 		{8918C5F2-9F0E-4247-A46A-B7B918119FB3} = {7E147952-BCF7-444C-8C04-695F6C6C02E8}
 		{0E9B4B09-0135-47C9-972E-98F07E6A9D1E} = {8918C5F2-9F0E-4247-A46A-B7B918119FB3}
-		{384C88D5-37EA-4C70-A8C2-C359F528008F} = {E04F894C-AE2F-4D49-80AD-5138D5D242D5}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {ED2466B9-0B01-4000-9092-DC193695ABB6}
