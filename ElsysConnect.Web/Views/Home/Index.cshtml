@@ -3,10 +3,10 @@
     <div>
         <div id="div-logos" display="inline-block">
             <img src="https://elsys.com/wp-content/uploads/2022/06/logo-color.svg" />
-            <a href="https://elsys.com.br"><img src="https://i.ibb.co/xjg0Jmp/CONNECT-LOGO-NOVA.png" alt="CONNECT-LOGO-NOVA" width="8%"></a>
+            <a href="https://elsys.com.br"><img src="https://i.ibb.co/xjg0Jmp/CONNECT-LOGO-NOVA.png" alt="CONNECT-LOGO-NOVA" width="7.5%"></a>
             <a id="subtitle"></a>
         </div>
-        <img src="https://elsys.com/wp-content/uploads/2022/10/home-proposito2-1920x994-1.jpg" alt="Image description" width="70%" >
+        <img src="https://elsys.com/wp-content/uploads/2022/10/home-proposito2-1920x994-1.jpg" alt="Image description" width="75%">
     </div>
 
     <div class="stacks" onmouseover="showStacks()" onmouseout="hideStacks()">
@@ -18,63 +18,27 @@
         <ul>
             <li>
                 <button class="button">ASP.NET Core MVC</button>
-                <span class="dash"></span>
                 <button class="button">.NET Core 3.1</button>
-                <span class="dash"></span>
                 <button class="button">C#</button>
-            </li>
-            <li>
+                <button class="button">View Components</button>
                 <button class="button">HTML</button>
-                <span class="dash"></span>
                 <button class="button">CSS</button>
-                <span class="dash"></span>
                 <button class="button">JS</button>
-                <span class="dash"></span>
                 <button class="button">JQUERY</button>
             </li>
             <li>
                 <button class="button">DDD (Domain-Driven Design)</button>
-            </li>
-            <li>
                 <button class="button">AutoMapper</button>
-                <span class="dash"></span>
                 <button class="button">DAPPER</button>
-                <span class="dash"></span>
-                <button class="button">Injeção de dependncia (DI)</button>
-            </li>
-            <li>
-                <button class="button">View Components</button>
+                <button class="button">Injeção de dependência (DI)</button>
+
             </li>
         </ul>
     </div>
 </div>
 
+
 <style>
-    #div-logos a {
-        margin-left: 20px;
-    }    
-     
-     #subtitle {
-          place-content: center
-      }
-
-    img {
-        margin-top: 5px;
-    }
-
-    ul {
-        list-style: none;
-        padding: 0;
-        margin: 20px auto; /* set left and right margin to auto */
-        width: 75%; /* adjust the width as needed */
-    }
-
-    li {
-        display: flex;
-        align-items: center;
-        margin-bottom: 10px;
-    }
-
     .button {
         display: inline-block;
         padding: 5px 10px;
@@ -84,12 +48,34 @@
         font-size: 14px;
         transition: all 0.3s ease;
         position: relative;
+        margin-bottom: 5px;
     }
 
         .button:hover {
             background-color: #005F6B;
         }
 
+    ul {
+        list-style: none;
+        padding: 0;
+        margin: 20px auto; /* set left and right margin to auto */
+        width: 75%; /* adjust the width as needed */
+    }
+
+</style>
+
+<style>
+    #div-logos a {
+        margin-left: 20px;
+    }
+
+    #subtitle {
+        place-content: center
+    }
+
+    img {
+        margin-top: 5px;
+    }
 
     .dash {
         margin: 0 10px;
@@ -98,7 +84,13 @@
         background-color: #333;
     }
 
+</style>
+
+
+<style>
+
     .stacks {
+        position: relative; /* adicionado */
         margin-top: 20px;
         margin-bottom: 20px;
         background-color: gainsboro;
@@ -115,6 +107,10 @@
 
     #stacks-list {
         display: none;
+        position: initial;
+        /*bottom: calc(100% + 10px);*/
+        width: 100%;
+        /*transform: translateY(-20%);*/
     }
 
         #stacks-list.show {
@@ -146,22 +142,3 @@
         document.getElementById("stacks-list").classList.remove("show");
     }
 </script>
-
-@*<div class="text-center">
-        <h1 class="display-4">Aplicação exemplo para Elsys</h1>
-        <img src="https://elsys.com/wp-content/uploads/2022/10/home-proposito2-1920x994-1.jpg" alt="Image description" width="50%">
-
-        ASP NET MVC CORE | .NET CORE 3.1 | C#
-
-        View Components
-        DDD(Domain Drive-Design)
-        DAPPER
-        AutoMapper
-        Injeção de dependencia
-
-
-        Github do projeto: "https://github.com/AlessandroBernardo/ElsysConnect"
-        Meu Github: "https://github.com/AlessandroBernardo"
-
-
-    </div>*@

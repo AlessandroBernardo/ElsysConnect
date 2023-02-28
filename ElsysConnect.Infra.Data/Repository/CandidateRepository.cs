@@ -18,15 +18,17 @@ namespace ElsysConnect.Infra.Data.Repository
     {
 
         private readonly IDbConnection _dbConnection;
+        private readonly GetQueries _getQueries; 
 
-        public CandidateRepository(IDbConnection dbConnection) : base(dbConnection)
+        public CandidateRepository(IDbConnection dbConnection, GetQueries getQueries) : base(dbConnection)
         {
             _dbConnection = dbConnection;
+            _getQueries = getQueries;   
         }
 
         public async Task<IEnumerable<CandidateRecruitmentPhaseDto>> GetCandidatesRecruitmentPhases()
         {
-            var sql = GetQueries.CandidatesRecruitmentPhases();            
+            var sql = _getQueries.CandidatesRecruitmentPhases();            
 
             var candidatesWithPhases = await _dbConnection.QueryAsync<CandidateRecruitmentPhaseDto, PhasesDto, CandidateRecruitmentPhaseDto>(sql,
                 (candidate, phase) =>

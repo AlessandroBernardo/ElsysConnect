@@ -18,6 +18,7 @@ using System.Linq;
 using System.Threading.Tasks;
 using System.Data;
 using Microsoft.Data.SqlClient;
+using ElsysConnect.Infra.Data.Repository.Queries.Candidates;
 
 namespace ElsysConnect.Web
 {
@@ -41,8 +42,9 @@ namespace ElsysConnect.Web
             services.AddScoped<IJobPositionAppService, JobPositionAppService>();
             services.AddScoped<IJobPositionRepository, JobPositionRepository>();
             services.AddScoped(typeof(IBaseRepository<>), typeof(BaseRepository<>));
-            services.AddScoped(typeof(IBaseAppService<>), typeof(BaseAppService<>));                        
-            
+            services.AddScoped(typeof(IBaseAppService<>), typeof(BaseAppService<>));
+            services.AddScoped<GetQueries>();
+
             services.AddControllersWithViews();
         }
 

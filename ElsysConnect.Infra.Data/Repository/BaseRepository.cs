@@ -28,12 +28,12 @@ namespace ElsysConnect.Infra.Data.Repository
             return retorno;
         }       
 
-        public async Task InsertAsync(T entity)
+        public Task InsertAsync(T entity)
         {
             throw new NotImplementedException();
         }
 
-        public async Task UpdateAsync(T entity)
+        public Task UpdateAsync(T entity)
         {
             throw new NotImplementedException();
         }
